@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from flights import views
+from django.urls import path
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,6 @@ urlpatterns = [
     path('booking/<int:booking_id>/', views.BookingDetails.as_view(), name="booking-details"),
     path('booking/<int:booking_id>/update/', views.UpdateBooking.as_view(), name="update-booking"),
     path('booking/<int:booking_id>/cancel/', views.CancelBooking.as_view(), name="cancel-booking"),
+    path('login/', obtain_jwt_token, name="login"),
+    path('createbooking/<flight_id>',views.CreateBooking.as_view(), name="book-flight"),
 ]
